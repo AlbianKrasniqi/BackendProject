@@ -1,3 +1,3 @@
 exports.user = (req, res) => {
-  res.send("asd");
+  res.send('Users Page');
 };
