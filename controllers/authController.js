@@ -1,7 +1,7 @@
 const db = require('../db/database');
 const jwt = require('jsonwebtoken');
 
-exports.register = async (req, res) => {
+exports.register = (req, res) => {
   const roles_id = req.body.roles_id;
   const username = req.body.username;
   const email = req.body.email;

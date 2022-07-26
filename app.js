@@ -11,9 +11,9 @@ const notFound = require('./middleware/notFound');
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/v1/users', userRouter);
-app.use('/api/v1/grades', gradesRouter);
 app.use('/api/v1/subjects', subjectsRouter);
+app.use('/api/v1/grades', gradesRouter);
+app.use('/api/v1/users', userRouter);
 app.use(notFound);
 
 const port = process.env.PORT || 3000;
