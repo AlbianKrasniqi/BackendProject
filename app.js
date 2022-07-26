@@ -1,6 +1,7 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
+const cors = require('cors');
+require('./db/database.js');
 
 const mainRouter = require('./routes/mainRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -13,4 +14,9 @@ app.use('/api/v1', mainRouter);
 app.use('/api/v1/users', userRouter);
 app.use(notFound);
 
-module.exports = app;
+const port = process.env.PORT || 3000;
+const hostname = '127.0.0.1';
+
+app.listen(port, hostname, () => {
+  console.log(`Port is running on port: http://${hostname}:${port}/`);
+});
