@@ -1,6 +1,6 @@
 const db = require('../db/database');
 
-exports.createNewGrade = (req, res) => {
+exports.create = (req, res) => {
   const subjectId = req.body.subjectId;
   const teacherId = req.body.teacherId;
   const studentId = req.body.studentId;
@@ -11,5 +11,12 @@ exports.createNewGrade = (req, res) => {
   db.query(sql, function (err, result) {
     if (err) throw err;
     res.json({ status: 'success', message: 'Subject created successfully!' });
+  });
+};
+
+exports.get = (req, res) => {
+  db.query('SELECT * FROM grades', function (err, result) {
+    if (err) throw err;
+    res.json({ status: 'success', data: result.length, result: result });
   });
 };
