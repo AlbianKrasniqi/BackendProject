@@ -1,3 +1,3 @@
 exports.index = (req, res) => {
-  res.send('Home Page');
+  res.send('subjects');
 };
