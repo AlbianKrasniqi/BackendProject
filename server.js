@@ -1,18 +1,21 @@
-const app = require("./app");
 const mysql = require("mysql");
+const dotenv = require("dotenv");
+
+dotenv.config();
+const app = require("./app");
 
 const connection = mysql.createConnection({
   host: "localhost",
   database: "backendproject",
   user: "root",
-  password: "mysql1234",
+  password: process.env.DATABASE_PASSWORD,
 });
 
 connection.connect((error) => {
   if (error) {
     throw error;
   }
-  console.log("MySQL database is connected successfully!");
+  console.log("MySQL connection successful!");
 });
 
 const port = process.env.PORT || 3000;
