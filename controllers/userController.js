@@ -3,7 +3,7 @@ const db = require('../db/database');
 exports.getAllUsers = (req, res) => {
   db.query('SELECT * FROM users', function (err, result) {
     if (err) throw err;
-    res.json({ status: 'success', data: result.length, result: result });
+    res.json({ status: 'Success', data: result.length, result: result });
   });
 };
 
@@ -12,20 +12,20 @@ exports.getUser = (req, res) => {
     `SELECT * FROM users where id = ${req.params.id}`,
     function (err, result) {
       if (err) throw err;
-      res.json({ status: 'success', data: result.length, result: result });
+      res.json({ status: 'Success', data: result.length, result: result });
     }
   );
 };
 
 exports.updateUser = (req, res) => {
   const userId = req.params.id;
-  const roles_id = req.body.roles_id;
+  const roleId = req.body.roleId;
 
-  const sql = `UPDATE users SET roles_id = '${roles_id}' WHERE(id='${userId}')`;
+  const sql = `UPDATE users SET roleId = '${roleId}' WHERE(id='${userId}')`;
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ message: 'success', result: result });
+    res.json({ status: 'Success', message: 'User updated succesfully' });
   });
 };
 
@@ -35,6 +35,6 @@ exports.deleteUser = (req, res) => {
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ status: 'success', message: 'User deleted successfully' });
+    res.json({ status: 'Success', message: 'User deleted successfully' });
   });
 };

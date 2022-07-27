@@ -27,20 +27,19 @@ exports.createGrade = (req, res) => {
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ status: 'success', message: 'Subject created successfully!' });
+    res.json({ status: 'Success', message: 'Subject created successfully!' });
   });
 };
 
 exports.updateGrade = (req, res) => {
-  const gradeId = req.params.id;
+  const userId = req.params.id;
   const grade = req.body.grade;
-  console.log(userId, roles_id);
 
-  const sql = `UPDATE grades SET grade = '${grade}' WHERE(id='${gradeId}')`;
+  const sql = `UPDATE grades SET grade = '${grade}' WHERE(id='${userId}')`;
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ message: 'success', result: result });
+    res.json({ status: 'OK', message: 'Success' });
   });
 };
 
@@ -50,6 +49,6 @@ exports.deleteGrade = (req, res) => {
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ status: 'success', message: 'Grade deleted successfully' });
+    res.json({ status: 'OK', message: 'Success' });
   });
 };

@@ -3,7 +3,7 @@ const db = require('../db/database');
 exports.getAllSubjects = (req, res) => {
   db.query('SELECT * FROM subject', function (err, result) {
     if (err) throw err;
-    res.json({ status: 'success', data: result.length, result: result });
+    res.json({ status: 'Success', data: result.length, result: result });
   });
 };
 
@@ -12,7 +12,7 @@ exports.getSubject = (req, res) => {
     `SELECT * FROM subject where id = ${req.params.id}`,
     function (err, result) {
       if (err) throw err;
-      res.json({ status: 'success', data: result.length, result: result });
+      res.json({ status: 'Success', data: result.length, result: result });
     }
   );
 };
@@ -24,7 +24,7 @@ exports.createSubject = (req, res) => {
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ status: 'success', message: 'Subject created successfully!' });
+    res.json({ status: 'Success', message: 'Subject created successfully!' });
   });
 };
 
@@ -46,6 +46,6 @@ exports.deleteSubject = (req, res) => {
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ status: 'success', message: 'Subject deleted successfully' });
+    res.json({ status: 'Success', message: 'Subject deleted successfully' });
   });
 };

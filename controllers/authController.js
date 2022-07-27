@@ -21,7 +21,7 @@ exports.register = (req, res) => {
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ status: 'success', message: 'User created successfully!' });
+    res.json({ status: 'Success', message: 'User created successfully!' });
   });
 };
 
@@ -36,6 +36,6 @@ exports.login = (req, res) => {
     }
     delete data.password;
     const token = jwt.sign(data, 'SuperSecretKey', { expiresIn: '30m' });
-    res.status(200).send({ status: 'success', username: data.username, token });
+    res.status(200).send({ status: 'Success', username: data.username, token });
   });
 };
