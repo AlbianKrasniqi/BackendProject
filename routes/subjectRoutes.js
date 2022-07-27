@@ -3,9 +3,15 @@ const subjectController = require('../controllers/subjectController');
 
 const router = express.Router();
 
-router.post('/', subjectController.create);
-router.get('/', subjectController.get);
-router.put('/:id', subjectController.update);
+router
+  .route('/')
+  .get(subjectController.getAllSubjects)
+  .post(subjectController.createSubject);
 
+router
+  .route('/:id')
+  .get(subjectController.getSubject)
+  .put(subjectController.updateSubject)
+  .delete(subjectController.deleteSubject);
 
 module.exports = router;

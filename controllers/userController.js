@@ -7,7 +7,7 @@ exports.getAllUsers = (req, res) => {
   });
 };
 
-exports.getUserById = (req, res) => {
+exports.getUser = (req, res) => {
   db.query(
     `SELECT * FROM users where id = ${req.params.id}`,
     function (err, result) {

@@ -1,6 +1,15 @@
 const db = require('../db/database');
 
-exports.create = (req, res) => {
+exports.getAllSubjects = (req, res) => {
+  db.query('SELECT * FROM subject', function (err, result) {
+    if (err) throw err;
+    res.json({ status: 'success', data: result.length, result: result });
+  });
+};
+
+exports.getSubject = (req, res) => {};
+
+exports.createSubject = (req, res) => {
   const name = req.body.name;
 
   const sql = `INSERT INTO subject (name) VALUES ("${name}")`;
@@ -11,14 +20,7 @@ exports.create = (req, res) => {
   });
 };
 
-exports.get = (req, res) => {
-  db.query('SELECT * FROM subject', function (err, result) {
-    if (err) throw err;
-    res.json({ status: 'success', data: result.length, result: result });
-  });
-};
-
-exports.update = (req, res) => {
+exports.updateSubject = (req, res) => {
   const id = req.params.id;
   const name = req.body.name;
 
@@ -29,3 +31,5 @@ exports.update = (req, res) => {
     res.json({ message: 'Subject has been updated successfully!' });
   });
 };
+
+exports.deleteSubject = (req, res) => {};

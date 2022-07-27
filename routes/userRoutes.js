@@ -10,7 +10,7 @@ router.route('/').get(userController.getAllUsers);
 
 router
   .route('/:id')
-  .get(userController.getUserById)
+  .get(userController.getUser)
   .delete(userController.deleteUser);
 
 module.exports = router;

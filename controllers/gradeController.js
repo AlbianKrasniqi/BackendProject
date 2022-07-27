@@ -1,6 +1,15 @@
 const db = require('../db/database');
 
-exports.createNewGrade = (req, res) => {
+exports.getAllGrades = (req, res) => {
+  db.query('SELECT * FROM grades', function (err, result) {
+    if (err) throw err;
+    res.json({ status: 'success', data: result.length, result: result });
+  });
+};
+
+exports.getGrade = (req, res) => {};
+
+exports.createGrade = (req, res) => {
   const subjectId = req.body.subjectId;
   const teacherId = req.body.teacherId;
   const studentId = req.body.studentId;
@@ -14,9 +23,6 @@ exports.createNewGrade = (req, res) => {
   });
 };
 
-exports.getGrades = (req, res) => {
-  db.query('SELECT * FROM grades', function (err, result) {
-    if (err) throw err;
-    res.json({ status: 'success', data: result.length, result: result });
-  });
-};
+exports.updateGrade = (req, res) => {};
+
+exports.deleteGrade = (req, res) => {};
