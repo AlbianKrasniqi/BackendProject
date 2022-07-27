@@ -10,12 +10,14 @@ exports.create = (req, res) => {
     res.json({ status: 'success', message: 'Subject created successfully!' });
   });
 };
+
 exports.get = (req, res) => {
   db.query('SELECT * FROM subject', function (err, result) {
     if (err) throw err;
     res.json({ status: 'success', data: result.length, result: result });
   });
 };
+
 exports.update = (req, res) => {
   const id = req.params.id;
   const name = req.body.name;

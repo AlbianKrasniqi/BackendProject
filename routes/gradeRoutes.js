@@ -3,7 +3,7 @@ const gradeController = require('../controllers/gradeController');
 
 const router = express.Router();
 
-router.post('/', gradeController.create);
-router.get('/', gradeController.get);
+router.get('/', gradeController.getGrades);
+router.post('/', gradeController.createNewGrade);
 
 module.exports = router;
