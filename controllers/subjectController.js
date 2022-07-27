@@ -9,7 +9,7 @@ exports.getAllSubjects = (req, res) => {
 
 exports.getSubject = (req, res) => {
   db.query(
-    `SELECT * FROM subjects where id = ${req.params.id}`,
+    `SELECT * FROM subject where id = ${req.params.id}`,
     function (err, result) {
       if (err) throw err;
       res.json({ status: 'success', data: result.length, result: result });
@@ -42,10 +42,10 @@ exports.updateSubject = (req, res) => {
 
 exports.deleteSubject = (req, res) => {
   const id = req.params.id;
-  const sql = `DELETE from subjects WHERE(id='${id}')`;
+  const sql = `DELETE from subject WHERE(id='${id}')`;
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.json({ message: 'success' });
+    res.json({ status: 'success', message: 'Subject deleted successfully' });
   });
 };
