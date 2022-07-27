@@ -7,7 +7,15 @@ exports.getAllSubjects = (req, res) => {
   });
 };
 
-exports.getSubject = (req, res) => {};
+exports.getSubject = (req, res) => {
+  db.query(
+    `SELECT * FROM subjects where id = ${req.params.id}`,
+    function (err, result) {
+      if (err) throw err;
+      res.json({ status: 'success', data: result.length, result: result });
+    }
+  );
+};
 
 exports.createSubject = (req, res) => {
   const name = req.body.name;
@@ -32,4 +40,12 @@ exports.updateSubject = (req, res) => {
   });
 };
 
-exports.deleteSubject = (req, res) => {};
+exports.deleteSubject = (req, res) => {
+  const id = req.params.id;
+  const sql = `DELETE from subjects WHERE(id='${id}')`;
+
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+    res.json({ message: 'success' });
+  });
+};

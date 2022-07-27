@@ -7,7 +7,15 @@ exports.getAllGrades = (req, res) => {
   });
 };
 
-exports.getGrade = (req, res) => {};
+exports.getGrade = (req, res) => {
+  db.query(
+    `SELECT * FROM grades where id = ${req.params.id}`,
+    function (err, result) {
+      if (err) throw err;
+      res.json({ status: 'success', data: result.length, result: result });
+    }
+  );
+};
 
 exports.createGrade = (req, res) => {
   const subjectId = req.body.subjectId;
@@ -23,6 +31,25 @@ exports.createGrade = (req, res) => {
   });
 };
 
-exports.updateGrade = (req, res) => {};
+exports.updateGrade = (req, res) => {
+  const gradeId = req.params.id;
+  const grade = req.body.grade;
+  console.log(userId, roles_id);
 
-exports.deleteGrade = (req, res) => {};
+  const sql = `UPDATE grades SET grade = '${grade}' WHERE(id='${gradeId}')`;
+
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+    res.json({ message: 'success', result: result });
+  });
+};
+
+exports.deleteGrade = (req, res) => {
+  const id = req.params.id;
+  const sql = `DELETE from grades WHERE(id='${id}')`;
+
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+    res.json({ status: 'success', message: 'Grade deleted successfully' });
+  });
+};
