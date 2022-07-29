@@ -39,3 +39,10 @@ exports.login = (req, res) => {
     res.status(200).send({ status: 'Success', username: data.username, token });
   });
 };
+
+exports.protect = function checkAuth(req, res, next) {
+  if (!req.headers.authorization) {
+    return res.status(403).json({ error: 'No credentials sent!' });
+  }
+  next();
+};
